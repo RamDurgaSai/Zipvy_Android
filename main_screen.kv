@@ -1,0 +1,65 @@
+BoxLayout:
+    orientation : 'vertical'
+    MDToolbar:
+        title : 'Zipvy'
+        elevation : 8
+
+    BoxLayout:
+        padding : '8dp'
+        spacing : '2dp'
+        orientation : 'vertical'
+
+        MDRectangleFlatButton:
+            text : "Select Zip from Storage"
+            pos_hint : {'center_x' : 0.5 , 'center_y' : 0.4 }
+            on_release : app.select_zip()
+            text_color: app.theme_cls.primary_color
+
+        MDLabel:
+            id : label
+
+        MDRectangleFlatIconButton:
+            icon: "audio-video"
+            text: "Convert"
+            pos_hint: {'center_x' : 0.5, 'center_y' : 0.5 }
+            on_release: app.convert()
+        BoxLayout:
+            orientation : 'vertical'
+            spacing : "0dp"
+
+            MDProgressBar:
+                id:prog
+                value: 0
+
+            MDLabel:
+                id : status_label
+                text: "Ready to Work"
+                halign : 'center'
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+
+            MDIconButton:
+                icon: "folder"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release : app.open_video_folder()
+            MDIconButton:
+                icon: "album"
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+                on_release : app.open_video()
+
+
+            MDFloatingActionButtonSpeedDial:
+                data: app.action_button_data
+                root_button_anim: True
+                hint_animation : True
+                bg_hint_color: app.theme_cls.primary_light
+                callback: app.action_button_callback
+                icon : 'select-color'
+
+            MDLabel:
+                text: "Zipvy 0.1"
+                theme_text_color: "Hint"
+                pos_hint: {'center_x' : 0.92, 'center_y' : 1}
+                font_size : "13sp"
